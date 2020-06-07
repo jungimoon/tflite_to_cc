@@ -62,6 +62,7 @@ int main(int argc, char* argv[]) {
 
   // Fill input buffers
   // TODO(user): Insert code to fill input tensors
+  interpreter->typed_input_tensor<float>(0)[0] = 10;
 
   // Run inference
   TFLITE_MINIMAL_CHECK(interpreter->Invoke() == kTfLiteOk);
@@ -70,6 +71,8 @@ int main(int argc, char* argv[]) {
 
   // Read output buffers
   // TODO(user): Insert getting data out code.
+  float result = interpreter->typed_output_tensor<float>(0)[0];
+  fprintf(stderr, "minimal : %d\n", int(result));
 
   return 0;
 }
